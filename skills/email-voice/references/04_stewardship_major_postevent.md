@@ -13,30 +13,13 @@ notes: |
   not with "thank you for attending."
 ---
 
-<!-- DRAFT SCAFFOLD — body not yet written in your voice.
-     Fill the bracketed sections in your own prose before this file is used
-     as a voice anchor. Keep the opener pattern; vary the actual wording.
-     This file demonstrates the information-flow rule: sensitive disclosure
-     from the event does NOT appear in the email body. -->
+Bea,
 
-**Opener pattern for this file:** Open with a specific sensory moment from the event — the light, the room, a thing someone said from the podium. Stewardship is about showing the donor what they were part of, not thanking them for being part of it.
+The chaplain's blessing on Thursday evening was the part of the program I keep coming back to. The room went quiet in a way these rooms rarely do.
 
-**Scenario context (synthetic — reference while writing, do NOT transcribe sensitive details into the body):**
-- Donor: Beatrice "Bea" Whitaker, ~$30,000 cumulative, named gift on the patient tower's third-floor family lounge.
-- Setting: Tower dedication event, Thursday evening. Bea attended with her daughter.
-- During the event, in conversation: Bea disclosed her husband had received a hard diagnosis the week prior. **This does NOT appear in the email.** It was a private moment at a public event. The note to file flags it; the email does not.
-- What happened on the program: Two patient-family speakers; the chaplain's blessing was unexpectedly moving; the third-floor lounge plaque was unveiled.
-- Next step this email needs to land: Photos of the plaque and the unveiling will arrive next week; a quiet coffee in January if Bea would like, no agenda.
+The third-floor lounge looks the way you imagined it would, and the families who used it this week — the ones who spoke at the dedication and the ones who didn't — used it the way it was meant to be used. Two of the patient-family speakers had specific things to say about the space being where their hardest hours softened, and they said it more eloquently than I could.
 
----
-
-[Paragraph 1 — opener. A sensory detail from the event. The chaplain's blessing. The light in the lounge. One sentence, two at most. Do not say "thank you for attending."]
-
-[Paragraph 2 — what she made possible, in the language of what happened in the room, not what she gave. The family who spoke. The way the space is being used. Be specific. Two or three sentences.]
-
-[Paragraph 3 — practical. Photos coming next week from Devon (your team). A January coffee on offer, no agenda, easy to decline.]
-
-[Optional 4 — one short line if it's earned. Closeness without intimacy. NEVER reference the disclosure from earlier in the evening, even gently. The email is the public record; her disclosure stays in the room.]
+Devon will send through the unveiling photos next week, including a few of the plaque itself. If you'd like a quiet coffee in January, with no particular agenda, my calendar is open — easy to push off if the timing isn't right.
 
 Warmly,
 Elan

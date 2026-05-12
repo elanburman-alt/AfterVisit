@@ -5,3 +5,5 @@ __pycache__/
 *.pyc
 ~$*
 data/activity_log.json
+scratch/
+.claude/

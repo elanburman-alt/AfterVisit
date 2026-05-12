@@ -15,26 +15,11 @@ notes: |
   email proves the relationship was never just about the ask.
 ---
 
-<!-- DRAFT SCAFFOLD — body not yet written in your voice.
-     Fill the bracketed sections in your own prose before this file is used
-     as a voice anchor. This is the hardest email in the corpus to write
-     well; the temptation toward a soft re-ask is real. Resist it. -->
+Edward,
 
-**Opener pattern for this file:** Open with directness — name the decision plainly, without thanking him for considering. A decline is not a favor the donor did you; treating it as one is the soft re-ask in disguise.
+The decision makes sense, and I appreciated the candor with which you walked me through it. What stayed with me was the story about your father's woodworking — it wasn't what I expected to hear on a Tuesday, and I'm grateful you told it.
 
-**Scenario context (synthetic — reference while writing, do not transcribe into the body):**
-- Donor: Edward Cho, ~$25,000 cumulative over six years, declined a $35,000 ask for the Children's Hope Center expansion.
-- Setting: Lunch, his choice of restaurant, 60 minutes. He was clear and unembarrassed about declining; gave concrete reasons (a different giving priority this year).
-- What also happened: He spoke at length about his late father's woodworking, unprompted. It mattered to him to tell you.
-- Next step this email needs to land: Nothing transactional. A reference to the foundation's next public event in the spring, mentioned once, no pressure.
-
----
-
-[Paragraph 1 — opener and acknowledgement. Name that you heard him and that the decision makes sense. One sentence. Refer to something real from the conversation that was NOT about the ask — the woodworking story, the restaurant, something he said. One more sentence. That's the whole paragraph.]
-
-[Paragraph 2 — the close. One line about the spring event being on the calendar, no pressure, no "hope to see you." If he comes, he comes. Stop.]
-
-[NO third paragraph. NO "in the meantime." NO "as your priorities evolve." If you find yourself writing a third paragraph, delete it.]
+The spring event is on the calendar for late April. If it works, it works; if not, no need.
 
 Warmly,
 Elan
