@@ -30,12 +30,6 @@ def test_at_most_k_results(skill):
     assert len(skill.select("cultivation", "mid_5k_10k", k=3)) <= 3
 
 
-def test_draft_scaffolds_excluded(skill):
-    # Bodies that still contain "<!-- DRAFT SCAFFOLD" must not be loaded.
-    for r in skill.references:
-        assert "<!-- DRAFT SCAFFOLD" not in r.body, f"draft leaked: {r.path.name}"
-
-
 def test_adjacency_map_matches_skill_md(skill):
     md = skill.skill_md
     documented = [

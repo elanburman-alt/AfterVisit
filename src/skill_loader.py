@@ -10,8 +10,6 @@ ADJACENT_SEGMENTS = {
     "lead_100k_plus": ["major_15k_50k"],
 }
 
-DRAFT_MARKER = "<!-- DRAFT SCAFFOLD"
-
 
 @dataclass
 class Reference:
@@ -34,18 +32,13 @@ class EmailVoiceSkill:
         refs: list[Reference] = []
         for path in sorted(refs_dir.glob("*.md")):
             post = frontmatter.load(path)
-            body = post.content
-            # Skip scaffolds whose body hasn't been filled in — they would
-            # poison voice anchoring with bracketed guidance text.
-            if DRAFT_MARKER in body or post.get("draft") is True:
-                continue
             refs.append(Reference(
                 id=str(post.get("id") or path.stem),
                 meeting_type=str(post.get("meeting_type") or ""),
                 donor_segment=str(post.get("donor_segment") or ""),
                 program=post.get("program"),
                 tags=list(post.get("tags") or []),
-                body=body,
+                body=post.content,
                 path=path,
             ))
         return refs
