@@ -56,7 +56,12 @@ def _strip_fences(raw: str) -> str:
 
 
 def _judge(template: str, **fields) -> dict:
-    system = template.format(**fields)
+    # The judge prompts contain literal { } in the output-contract example
+    # (showing the expected JSON shape), so .format() collides with those.
+    # Use direct substitution instead.
+    system = template
+    for key, value in fields.items():
+        system = system.replace("{" + key + "}", str(value))
     resp = _client.messages.create(
         model=MODEL_JUDGE,
         max_tokens=2048,
