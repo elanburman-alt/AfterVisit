@@ -5,17 +5,36 @@ import streamlit as st
 from src.config import ACTIVITY_LOG
 from src.generate import run
 from src.mock_salesforce import post_activity
+from src.redact import detect_categories
 
 DONOR_SEGMENTS = ["prospect", "new_donor", "mid_5k_10k", "major_15k_50k", "lead_100k_plus"]
 MEETING_TYPES  = ["discovery", "cultivation", "solicitation", "stewardship", "decline"]
-FLAG_CHIPS = {
-    "health":             "🔴 health",
-    "family":             "🟠 family",
-    "financial":          "🟡 financial",
-    "board_dynamics":     "🔵 board",
-    "donor_relationship": "🟣 relationship",
-    "other":              "⚪ other",
+
+FLAG_COLORS = {
+    "health":             "#dc2626",
+    "family":             "#ea580c",
+    "financial":          "#ca8a04",
+    "board_dynamics":     "#2563eb",
+    "donor_relationship": "#9333ea",
+    "other":              "#6b7280",
 }
+FLAG_LABELS = {
+    "health":             "health",
+    "family":             "family",
+    "financial":          "financial",
+    "board_dynamics":     "board",
+    "donor_relationship": "relationship",
+    "other":              "other",
+}
+
+
+def _chip_html(flag: str) -> str:
+    return (
+        f'<span style="background:{FLAG_COLORS.get(flag, "#6b7280")};'
+        f' color:white; padding:3px 10px; border-radius:12px;'
+        f' font-size:0.85em; margin-right:6px; display:inline-block;">'
+        f'{FLAG_LABELS.get(flag, flag)}</span>'
+    )
 
 st.set_page_config(page_title="AfterVisit", layout="wide")
 st.title("AfterVisit")
@@ -49,7 +68,7 @@ if result:
         st.subheader("Salesforce Note")
         flags = result["note"].get("sensitivity_flags") or []
         if flags:
-            st.markdown(" &nbsp; ".join(FLAG_CHIPS.get(f, f) for f in flags))
+            st.markdown("".join(_chip_html(f) for f in flags), unsafe_allow_html=True)
         st.json(result["note"])
         read_it = st.checkbox("I've read the note", key="read_it")
         if st.button("Approve and File", disabled=not read_it):
@@ -62,13 +81,16 @@ if result:
 
     with right:
         st.subheader("Thank-you Email")
-        email_lower = result["email"].lower()
-        risky = [f for f in flags if f in ("health", "family", "financial") and f in email_lower]
-        if risky:
-            st.warning("This email may reference flagged content — review before copying.")
+        email_categories = detect_categories(result["email"])
+        leak = sorted(set(flags) & set(email_categories))
+        if leak:
+            st.warning(
+                f"⚠ Email contains content matching flagged "
+                f"categories ({', '.join(leak)}) — review before copying."
+            )
+        st.markdown(result["email"])
         refs = result.get("references_used") or []
         st.caption(f"Refs used: {', '.join(refs) if refs else '(none)'}")
-        st.markdown(result["email"])
 
 st.divider()
 st.subheader("Recent activity log")

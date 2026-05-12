@@ -27,3 +27,16 @@ def redact(bullets: list[str]) -> list[str]:
                 line = re.sub(pattern, f"[redacted: {category}]", line, flags=re.IGNORECASE)
         out.append(line)
     return out
+
+
+def detect_categories(text: str) -> list[str]:
+    """Return categories whose patterns match anywhere in text. Used to scan
+    post-generation output (e.g., the email body) for keywords matching
+    sensitive categories — a leakage check, not redaction."""
+    matches: list[str] = []
+    for category, patterns in CATEGORIES.items():
+        for pattern in patterns:
+            if re.search(pattern, text, flags=re.IGNORECASE):
+                matches.append(category)
+                break
+    return matches
