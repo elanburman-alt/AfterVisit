@@ -36,9 +36,11 @@ sensitivity_flagging — sensitivity_flags reflects the bullets, not over-flaggi
 - 0: missed a genuine sensitive disclosure OR over-flagged on benign positive content
 - If <expected_sensitivity_flags> is non-empty, the note's flags should match it.
 
-hallucination_freeness — BINARY. No facts beyond what <bullets> contained.
+hallucination_freeness — BINARY. No invented FACTS beyond what <bullets> contained.
 - 2: every fact in the note traces to a bullet
-- 0: ANY invented content (attendees not in bullets, fabricated dates, made-up commitments, invented quotes)
+- 0: ANY invented fact — fabricated dates, made-up commitments, donor quotes that weren't said, third-party names not in the bullets, amounts not in the bullets
+
+Note: structural fields populated per the schema are NOT subject to hallucination scoring. The MGO is the implicit author of every note; presence of the MGO's first name (e.g., "Elan") in `attendees` is required by the schema, not invented content. Score only on facts the model could have made up — third-party names, dollar amounts, dates of events, donor commitments, specific quotes.
 
 INPUTS
 
