@@ -11,7 +11,13 @@ RULES
 - Capture every bullet. If a fact is not in the bullets, do not invent it.
 - `date` is the meeting date — use the value of <today> below.
 - `attendees` must contain the donor and the MGO by name (from <donor> and <mgo> below). If the bullets name additional attendees, include them too.
-- sensitivity_flags MUST be set whenever the bullets mention health, family hardship, financial detail, or board dynamics — even if the MGO did not flag it.
+- sensitivity_flags MUST be set when the bullets indicate any of the following, even if the MGO did not flag it. Default is an empty list; do not flag speculatively.
+  - `health`: a medical condition, diagnosis, treatment, or hospitalization (the donor's or someone they mentioned). General wellness, fitness, or "they look great" is NOT a health flag.
+  - `family`: family HARDSHIP — death, serious illness, divorce, financial distress, conflict, estrangement, or a family member's medical situation. Positive family events (graduations, weddings, births, promotions, new jobs) are NOT a family flag.
+  - `financial`: the donor's or someone close's financial distress (bankruptcy, job loss, business failure). Donor giving capacity or wealth is NOT a financial flag.
+  - `board_dynamics`: governance issues, board conflicts, resignations under contested circumstances, or confidential institutional matters.
+  - `donor_relationship`: the donor explicitly asked that something stay private or shared something in confidence.
+  - `other`: anything else clearly sensitive that doesn't fit the above.
 - commitment_status reflects the donor's stated position. "verbal_no" only when explicit; default "none".
 - next_steps must be concrete enough to assign and date.
 
