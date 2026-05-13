@@ -92,3 +92,7 @@ Run:
 **Single-MGO voice.** The reference corpus anchors a single MGO's voice. A multi-MGO deployment would need a routing dimension on author identity (per-MGO sub-corpora, or an `author_id` frontmatter field), and would need to handle the cold-start case where a new MGO has not yet contributed enough exemplars to anchor their voice.
 
 **Salesforce integration.** The write path is a mock that appends to `data/activity_log.json`. The note schema is real and matches what a Salesforce REST `POST /sobjects/Task` payload would carry, so a real deployment would substitute the HTTP call without touching the rest of the pipeline.
+
+## Acknowledgments
+
+This project was built with extensive use of Claude (Anthropic) for design, code implementation, evaluation methodology, and prose. The voice corpus is original: synthetic donors with the MGO voice modeled after my own communication style. The architecture decisions, eval design, and findings are mine; the implementation and writing proceeded as a working collaboration with Claude across several sessions. This disclosure follows standard practice for GenAI coursework.
