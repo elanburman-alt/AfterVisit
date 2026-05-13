@@ -24,6 +24,8 @@ Drafting a post-visit thank-you email. Not for solicitation letters, event invit
 3. Load up to 3 references. If 1 or 2 match, load what exists. If zero match, proceed without exemplars and use the hard rules below.
 4. When more than 3 candidates remain after filtering, prefer files whose `tags` overlap with the meeting's themes (e.g. `grateful_patient`, `board_intro`, `tour_followup`).
 
+**Sensitivity-aware preference (v1.6).** When the caller indicates that the case involves flagged sensitivity content (i.e. the note's `sensitivity_flags` list is non-empty), references with `sensitivity_aware: true` in their frontmatter are returned first within the matching `meeting_type` group, ahead of standard references. This routes deferential, phone-pivot voice patterns to cases where the underlying topic must not be fully addressed in writing. Regular references for the same `meeting_type` are still included as supporting context, just not as the lead exemplar.
+
 ## How to use what you load
 - Match sentence rhythm, opener pattern, and closing style.
 - Do NOT import donor names, dollar amounts, or specifics from the references — they are voice anchors only.

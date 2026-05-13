@@ -20,6 +20,7 @@ class Reference:
     tags: list[str]
     body: str
     path: Path
+    sensitivity_aware: bool = False
 
 
 class EmailVoiceSkill:
@@ -40,17 +41,45 @@ class EmailVoiceSkill:
                 tags=list(post.get("tags") or []),
                 body=post.content,
                 path=path,
+                sensitivity_aware=bool(post.get("sensitivity_aware") or False),
             ))
         return refs
 
-    def select(self, meeting_type: str, donor_segment: str, k: int = 3) -> list[Reference]:
+    def select(self, meeting_type: str, donor_segment: str, k: int = 3,
+               sensitivity_aware_preferred: bool = False) -> list[Reference]:
+        """Return up to k references matching meeting_type and donor_segment.
+
+        Sensitivity-aware references (frontmatter `sensitivity_aware: true`)
+        are gated behind the preference flag (v1.6):
+
+        - sensitivity_aware_preferred=False: sensitivity-aware refs are
+          EXCLUDED from the pool. This preserves v1 routing for cases
+          where the note's sensitivity_flags list is empty.
+        - sensitivity_aware_preferred=True: sensitivity-aware refs are
+          INCLUDED and stably sorted to the front of the candidate list
+          so they lead the exemplars.
+
+        Callers should pass True when the note's sensitivity_flags list
+        is non-empty; otherwise leave as False.
+        """
         pool = [r for r in self.references if r.meeting_type == meeting_type]
+        if not sensitivity_aware_preferred:
+            pool = [r for r in pool if not r.sensitivity_aware]
+
         exact = [r for r in pool if r.donor_segment == donor_segment]
         if len(exact) >= k:
-            return exact[:k]
-        adj = ADJACENT_SEGMENTS.get(donor_segment, [])
-        nearby = [r for r in pool if r.donor_segment in adj and r not in exact]
-        return (exact + nearby)[:k]
+            candidates = exact
+        else:
+            adj = ADJACENT_SEGMENTS.get(donor_segment, [])
+            nearby = [r for r in pool if r.donor_segment in adj and r not in exact]
+            candidates = exact + nearby
+
+        if sensitivity_aware_preferred:
+            # Stable sort: sensitivity-aware refs first, preserving relative
+            # order among each group.
+            candidates = sorted(candidates, key=lambda r: 0 if r.sensitivity_aware else 1)
+
+        return candidates[:k]
 
     def voice_rules(self) -> str:
         md = self.skill_md

@@ -141,10 +141,13 @@ def run(bullets: list[str], donor_name: str, donor_segment: str,
         if err:
             raise ValueError(f"Note failed schema after retry:\n{err}\n\nRaw:\n{raw}")
 
-    refs = _skill.select(meeting_type, donor_segment, k=3)
+    sensitivity_flags = note.get("sensitivity_flags") or []
+    refs = _skill.select(
+        meeting_type, donor_segment, k=3,
+        sensitivity_aware_preferred=bool(sensitivity_flags),
+    )
     email = _call_email(redacted, donor_name, meeting_type, refs)
 
-    sensitivity_flags = note.get("sensitivity_flags") or []
     info_flow = {"status": "no_flags_to_check", "first_check": None, "second_check": None}
 
     if sensitivity_flags:
