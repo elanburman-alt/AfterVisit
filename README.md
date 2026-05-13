@@ -81,6 +81,8 @@ Run:
 - Streamlit UI: `streamlit run app.py`.
 - Single case end-to-end via CLI: `python -m src.demo --case tc_01`.
 - Full evaluation (15 cases x 3 conditions, roughly 30 minutes wall time and $5 to $10 in tokens): `python -m src.evaluate --conditions a,b,aftervisit --cases data/test_cases.json --out eval_results.csv`.
+
+Note: eval_results.csv reflects the v1 architecture as a historical baseline. The current `aftervisit` condition in the code includes the v1.5 info-flow filter and v1.6 sensitivity-aware routing (see §3); re-running the eval on the current `master` will produce different numbers (higher information_flow_compliance and email totals on the three failure cases). The v1 results are retained as the comparison baseline so the v1.5 and v1.6 deltas remain interpretable.
 - Unit tests: `pytest tests/` (5 tests; all should pass).
 
 ## 5\. Limitations and future work
