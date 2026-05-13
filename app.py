@@ -73,7 +73,12 @@ def _apply_sample_to_state(case: dict) -> None:
     st.session_state["bullets_text"]  = "\n".join(case["bullets"])
 
 
-st.set_page_config(page_title="AfterVisit", layout="wide")
+st.set_page_config(
+    page_title="AfterVisit",
+    page_icon="static/favicon.svg",
+    layout="wide",
+)
+st.logo("static/logo.svg")
 st.title("AfterVisit")
 
 # Initialize form defaults before any form widgets render.
