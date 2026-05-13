@@ -78,9 +78,8 @@ st.set_page_config(
     page_icon="static/favicon.svg",
     layout="wide",
 )
-st.logo("static/logo.svg")
-
 with st.sidebar:
+    st.image("static/logo.svg", width=260)
     st.markdown(
         "**AfterVisit** is a post-meeting assistant for major gift officers. "
         "From a few bullets captured during or after a donor meeting, it produces "
