@@ -43,6 +43,9 @@ def main() -> int:
     print(result["email"])
     print(f"\nReferences used: {result['references_used'] or '(none)'}")
 
+    print("\n=== Info-flow check ===")
+    print(json.dumps(result.get("info_flow"), indent=2))
+
     sf = post_activity(result["note"])
     print(f"\nMock Salesforce: {sf}")
     return 0 if sf.get("status") == "ok" else 1
