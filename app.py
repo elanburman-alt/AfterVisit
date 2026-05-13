@@ -79,6 +79,29 @@ st.set_page_config(
     layout="wide",
 )
 st.logo("static/logo.svg")
+
+with st.sidebar:
+    st.markdown(
+        "**AfterVisit** is a post-meeting assistant for major gift officers. "
+        "From a few bullets captured during or after a donor meeting, it produces "
+        "a Salesforce-ready activity note and a voice-anchored thank-you email, "
+        "gated by human approval before any system write."
+    )
+
+    st.markdown("**How to use**")
+    st.markdown(
+        "1. Pick a sample case from the dropdown (or enter your own bullets)\n"
+        "2. Click **Generate**\n"
+        "3. Review the note and email, then approve to file"
+    )
+
+    st.divider()
+
+    st.markdown(
+        "**Learn more** — [GitHub repository](https://github.com/elanburman-alt/AfterVisit)"
+    )
+    st.caption("Hopkins MBA GenAI course project · BU.330.760 · Spring 2026")
+
 st.title("AfterVisit")
 
 # Initialize form defaults before any form widgets render.
