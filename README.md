@@ -1,6 +1,6 @@
 # AfterVisit
 
-**TL;DR.** AfterVisit is a six-stage pipeline that turns post-meeting bullets into a schema-valid Salesforce activity note and a voice-anchored thank-you email, gated by human approval. Evaluated against two baselines on 15 synthetic test cases: the decomposed architecture earns its place on operational reliability (15/15 tool-call success vs 8/15 for a single-LLM baseline), voice anchoring earns its place on email quality (+1.0 voice-match), and metadata routing ties fixed exemplars at this corpus size. v1.5 and v1.6 iterations addressed the headline failure mode (oblique acknowledgments of sensitive content); see §3.
+**TL;DR.** AfterVisit is a six-stage pipeline that turns post-meeting bullets into a schema-valid Salesforce activity note and a voice-anchored thank-you email, gated by human approval. Evaluated against two baselines on 15 synthetic test cases: the decomposed architecture earns its place on operational reliability (15/15 tool-call success vs 8/15 for a single-LLM baseline), voice anchoring earns its place on email quality (+1.0 voice-match), and metadata routing ties fixed exemplars at this corpus size. v1.5 and v1.6 iterations addressed the headline failure mode (oblique acknowledgments of sensitive content); see §3. Live demo: https://aftervisit.streamlit.app/.
 
 ## 1\. What this does
 
@@ -65,6 +65,8 @@ The v1.6 mechanism extends naturally to other meeting types as more sensitivity-
 **Judge caveats.** The LLM-as-judge correlated with hand-scored ground truth on 9 of 10 rubric dimensions, with agreement within ±1 point on at least 4 of 5 cases per dimension. One dimension, `hallucination_freeness`, required a prompt revision after the validation surfaced that the judge was flagging the schema-required MGO attendee name as invented content. Run-to-run stability could not be enforced via `temperature=0` because `claude-opus-4-7` does not accept the parameter; the validation passed on a single run, but a longer eval might surface variance the n=15 sample does not.
 
 ## 4\. Reproduction
+
+**Live demo:** https://aftervisit.streamlit.app — uses my Anthropic API key, please be reasonable.
 
 Requirements: Python 3.11 or later, on Windows or Unix.
 
